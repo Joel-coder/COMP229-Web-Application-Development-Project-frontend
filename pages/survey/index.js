@@ -59,8 +59,8 @@ export default function Survey() {
                   key={row._id}
                 >
                   <TableCell align="right">{row.contact_name}</TableCell>
-                  <TableCell align="right">{row.contact_name}</TableCell>
-                  <TableCell align="right">{row.contact_name}</TableCell>
+                  <TableCell align="right">{row.contact_number}</TableCell>
+                  <TableCell align="right">{row.email}</TableCell>
                   <TableCell align="right">
                     <button
                       onClick={() => {

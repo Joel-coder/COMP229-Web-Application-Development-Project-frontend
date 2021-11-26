@@ -14,13 +14,7 @@ export default function EditSurvey() {
   const [email, setEmail] = useState("");
   const [databaseID, setDatabaseID] = useState("");
   const router = useRouter();
-  const handleSubmit = () => {
-    const accountData = {
-      contact_name: name,
-      contact_number: number,
-      email: email,
-    };
-  };
+
   useEffect(() => {
     if (router.query?.id != undefined) {
       getId();
@@ -29,6 +23,7 @@ export default function EditSurvey() {
 
   const getId = async () => {
     let id = router.query.id;
+    setDatabaseID(id);
     API()
       .get(`contactInfo/edit/${id}`)
       .then((response) => {
@@ -39,6 +34,21 @@ export default function EditSurvey() {
           setEmail(response.data.contactInfo.email);
 
           //setArrTable(response.data.businessContactsList);
+        }
+      });
+  };
+
+  const handleSubmit = () => {
+    const accountData = {
+      contact_name: name,
+      contact_number: number,
+      email: email,
+    };
+    API()
+      .post(`contactInfo/edit/${databaseID}`, accountData) // example .get
+      .then((response) => {
+        if (response.data) {
+          console.log("success ");
         }
       });
   };

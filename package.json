@@ -2,7 +2,7 @@
   "name": "nextjs-setup",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "https://survey-project-229.herokuapp.com/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
