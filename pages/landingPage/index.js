@@ -4,12 +4,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from "next-i18next"; // i18n
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"; // i18n
 import { useRouter } from "next/router"; // i18n
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+
 import PersonIcon from "@mui/icons-material/Person";
 import LoginIcon from "@mui/icons-material/Login";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import Box from "@mui/material/Box";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import AppBar from "@mui/material/AppBar";
 import Card from "@mui/material/Card";
 import API from "../../api";
@@ -34,7 +35,7 @@ export default function LandingPage() {
   const classes = useStyles();
   const { exampleDispatch, exampleState, authState } =
     useContext(GlobalContext);
-  const [value, setValue] = useState("");
+
   const router = useRouter();
   const { locale } = router;
   const { t } = useTranslation("landingPage");
@@ -56,22 +57,6 @@ export default function LandingPage() {
   return (
     //  <div className={classes.landingPageContainer}>
     <div className="">
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-          <BottomNavigation
-            showLabels
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          >
-            <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
-            <BottomNavigationAction label="Surveys" icon={<AssignmentIcon />} />
-            <BottomNavigationAction label="Login" icon={<LoginIcon />} />
-          </BottomNavigation>
-        </AppBar>
-      </Box>
-
       <Container maxWidth="lg" className="flex-row-container">
         <Card sx={{ maxWidth: 345 }}>
           <CardActionArea>

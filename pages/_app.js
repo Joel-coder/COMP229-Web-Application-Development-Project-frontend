@@ -7,7 +7,7 @@ import theme from "../src/theme";
 import GlobalStateProvider from "../store/globalStateProvider";
 import { appWithTranslation } from "next-i18next";
 import CssBaseline from "@material-ui/core/CssBaseline";
-
+import NavBar from "../Components/Navbar";
 function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -30,6 +30,7 @@ function MyApp({ Component, pageProps }) {
         </Head>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+          <NavBar />
           <Component {...pageProps} />
         </ThemeProvider>
       </React.Fragment>
