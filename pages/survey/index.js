@@ -9,32 +9,69 @@ import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import API from "../../api";
 import { useRouter } from "next/router";
+import { DataGrid } from "@mui/x-data-grid";
 //require("typeface-poppins");
 //require("typeface-inter");
 
 export default function Survey() {
   const router = useRouter();
   const [token, setToken] = useState(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNzVkNGFkNmQ3NjQ5N2U3MmZiMjg4NiIsInVzZXJuYW1lIjoianZhcmdhcyIsImlhdCI6MTY0MjA5ODk5OSwiZXhwIjoxNjQzNzAzNzk5fQ.6ohMXRCtjiy4OASifZ3ilVQSdTCKCWra_2bgVrLNQpM"
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNzVkNGFkNmQ3NjQ5N2U3MmZiMjg4NiIsInVzZXJuYW1lIjoianZhcmdhcyIsImlhdCI6MTY0MjI3NDMxMywiZXhwIjoxNjQyODc5MTEzfQ.KaVYq_LyIKBihet3aR4DYu1LBL_77XCB5FAQ3i9gEPw"
   );
+  const [rows, setRows] = useState([
+    {
+      _id: "61e0b8574a158b76640f09dc",
+      contact_name: "Joel de Jesus Vargas Apolinario",
+      contact_number: "8493549089",
+      email: "joelvargasapolinario@gmail.com",
+      __v: 0,
+    },
+  ]);
 
-  useEffect(() => {
-    if (token) {
-      API()
-        .get(`/contactInfo/`, {
-          headers: {
-            authorization: "Bearer " + token,
-            accept: "application/json",
-            "Content-Type": "multipart/form-data",
-          },
-        }) // example .get
-        .then((response) => {
-          if (response.data) {
-            console.log("response ", response.data);
-          }
-        });
-    }
+  useEffect(async () => {
+    API()
+      .get(`/contactInfo/`, {
+        headers: {
+          authorization: "Bearer " + (await token),
+          accept: "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }) // example .get
+      .then((response) => {
+        if (response.data) {
+          console.log("response ", response.data);
+          setRows(response.data);
+        }
+      });
   }, [token]);
 
-  return <></>;
+  return (
+    <>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="right">ID</TableCell>
+              <TableCell align="right">Contact name&nbsp;(g)</TableCell>
+              <TableCell align="right">contact number&nbsp;(g)</TableCell>
+              <TableCell align="right">email&nbsp;(g)</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow
+                key={row.name}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="right">{row._id}</TableCell>
+                <TableCell align="right">{row.contact_name}</TableCell>
+                <TableCell align="right">{row.contact_number}</TableCell>
+                <TableCell align="right">{row.email}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
+  );
 }

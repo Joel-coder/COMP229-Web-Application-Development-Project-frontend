@@ -24,12 +24,12 @@ function Navbar() {
             }}
           >
             <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
-            <BottomNavigationAction label="Surveys" icon={<AssignmentIcon />} />
             <BottomNavigationAction
-              label="Login"
-              icon={<LoginIcon />}
-              onClick={() => router.push("/login")}
+              label="Surveys"
+              icon={<AssignmentIcon />}
+              onClick={() => router.push("/survey")}
             />
+            <BottomNavigationAction label="Login" icon={<LoginIcon />} />
           </BottomNavigation>
         </AppBar>
       </Box>

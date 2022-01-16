@@ -5,9 +5,6 @@ import { useTranslation } from "next-i18next"; // i18n
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"; // i18n
 import { useRouter } from "next/router"; // i18n
 
-import PersonIcon from "@mui/icons-material/Person";
-import LoginIcon from "@mui/icons-material/Login";
-import AssignmentIcon from "@mui/icons-material/Assignment";
 import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
