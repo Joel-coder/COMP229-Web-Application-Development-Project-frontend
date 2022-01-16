@@ -39,32 +39,34 @@ export default function Survey() {
 
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="right">ID</TableCell>
-              <TableCell align="right">Contact name</TableCell>
-              <TableCell align="right">contact number</TableCell>
-              <TableCell align="right">email</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows &&
-              rows.map((row) => (
-                <TableRow
-                  key={row.name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell align="right">{row._id}</TableCell>
-                  <TableCell align="right">{row.contact_name}</TableCell>
-                  <TableCell align="right">{row.contact_number}</TableCell>
-                  <TableCell align="right">{row.email}</TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Container className={"mt-5"}>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="right">ID</TableCell>
+                <TableCell align="right">Contact name</TableCell>
+                <TableCell align="right">contact number</TableCell>
+                <TableCell align="right">email</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows &&
+                rows.map((row) => (
+                  <TableRow
+                    key={row.name}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell align="right">{row._id}</TableCell>
+                    <TableCell align="right">{row.contact_name}</TableCell>
+                    <TableCell align="right">{row.contact_number}</TableCell>
+                    <TableCell align="right">{row.email}</TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
     </>
   );
 }
