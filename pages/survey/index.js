@@ -18,21 +18,13 @@ export default function Survey() {
   const [token, setToken] = useState(
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNzVkNGFkNmQ3NjQ5N2U3MmZiMjg4NiIsInVzZXJuYW1lIjoianZhcmdhcyIsImlhdCI6MTY0MjI3NDMxMywiZXhwIjoxNjQyODc5MTEzfQ.KaVYq_LyIKBihet3aR4DYu1LBL_77XCB5FAQ3i9gEPw"
   );
-  const [rows, setRows] = useState([
-    {
-      _id: "61e0b8574a158b76640f09dc",
-      contact_name: "Joel de Jesus Vargas Apolinario",
-      contact_number: "8493549089",
-      email: "joelvargasapolinario@gmail.com",
-      __v: 0,
-    },
-  ]);
+  const [rows, setRows] = useState();
 
-  useEffect(async () => {
+  useEffect(() => {
     API()
       .get(`/contactInfo/`, {
         headers: {
-          authorization: "Bearer " + (await token),
+          authorization: "Bearer " + token,
           accept: "application/json",
           "Content-Type": "multipart/form-data",
         },
@@ -43,7 +35,7 @@ export default function Survey() {
           setRows(response.data);
         }
       });
-  }, [token]);
+  }, []);
 
   return (
     <>
@@ -52,23 +44,24 @@ export default function Survey() {
           <TableHead>
             <TableRow>
               <TableCell align="right">ID</TableCell>
-              <TableCell align="right">Contact name&nbsp;(g)</TableCell>
-              <TableCell align="right">contact number&nbsp;(g)</TableCell>
-              <TableCell align="right">email&nbsp;(g)</TableCell>
+              <TableCell align="right">Contact name</TableCell>
+              <TableCell align="right">contact number</TableCell>
+              <TableCell align="right">email</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell align="right">{row._id}</TableCell>
-                <TableCell align="right">{row.contact_name}</TableCell>
-                <TableCell align="right">{row.contact_number}</TableCell>
-                <TableCell align="right">{row.email}</TableCell>
-              </TableRow>
-            ))}
+            {rows &&
+              rows.map((row) => (
+                <TableRow
+                  key={row.name}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell align="right">{row._id}</TableCell>
+                  <TableCell align="right">{row.contact_name}</TableCell>
+                  <TableCell align="right">{row.contact_number}</TableCell>
+                  <TableCell align="right">{row.email}</TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
